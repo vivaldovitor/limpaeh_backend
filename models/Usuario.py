@@ -17,11 +17,14 @@ class Usuario(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     senha = db.Column(db.String(255), nullable=False)
+    
     tipo_id = db.Column(db.Integer, db.ForeignKey('tipos_usuarios.id'), nullable=False)
     tipo = db.relationship("TipoUsuario", backref=db.backref("usuarios", lazy=True))
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=True)
 
-    def __init__(self, nome, email, senha, tipo_id):
+    def __init__(self, nome, email, senha, tipo_id, empresa_id=None):
         self.nome = nome
         self.email = email
         self.senha = generate_password_hash(senha)
         self.tipo_id = tipo_id
+        self.empresa_id = empresa_id
