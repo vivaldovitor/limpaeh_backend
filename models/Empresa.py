@@ -9,9 +9,8 @@ empresasFields = {
     'endereco': fields.String
 }
 
-
-class Empresas(db.Model):
-    __tablename__ = 'empresas'
+class Empresa(db.Model):
+    __tablename__ = 'empresas'  
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(255), nullable=False)

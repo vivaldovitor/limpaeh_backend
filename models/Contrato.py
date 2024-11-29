@@ -9,8 +9,8 @@ contratoFields = {
     'custo': fields.Float
 }
 
-class Contratos(db.Model):
-    __tablename__ = 'contratos'
+class Contrato(db.Model):
+    __tablename__ = 'contratos' 
 
     id = db.Column(db.Integer, primary_key=True)  
     vigencia_inicio = db.Column(db.DateTime, nullable=False)  
@@ -18,10 +18,10 @@ class Contratos(db.Model):
     numero_funcionarios = db.Column(db.Integer, nullable=False) 
     custo = db.Column(db.Float, nullable=False)  
 
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=False)
-    empresa = db.relationship('Empresas', backref=db.backref('contratos', lazy=True))
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=False)  
+    empresa = db.relationship('Empresa', backref=db.backref('contratos', lazy=True))
 
-    usuarios = db.relationship('Usuario', secondary='funcionarios_contratos', backref=db.backref('contratos', lazy=True))
+    usuarios = db.relationship('Usuario', secondary='funcionario_contrato', backref=db.backref('contratos', lazy=True), cascade="all, delete-orphan")  
 
     def __init__(self, vigencia_inicio, vigencia_fim, numero_funcionarios, custo, empresa_id):
         self.vigencia_inicio = vigencia_inicio

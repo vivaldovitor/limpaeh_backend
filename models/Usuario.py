@@ -11,16 +11,16 @@ usuarioFields = {
 }
 
 class Usuario(db.Model):
-    __tablename__ = "usuarios"
+    __tablename__ = "usuarios" 
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
-    senha = db.Column(db.String(255), nullable=False)
+    senha = db.Column(db.Text, nullable=False)
     
-    tipo_id = db.Column(db.Integer, db.ForeignKey('tipos_usuarios.id'), nullable=False)
-    tipo = db.relationship("TipoUsuario", backref=db.backref("usuarios", lazy=True))
-    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=True)
+    tipo_id = db.Column(db.Integer, db.ForeignKey('tipos_usuarios.id'), nullable=False)  
+    tipo = db.relationship("TipoUsuario", backref=db.backref("usuarios", lazy=True), cascade="all, delete-orphan")  
+    empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=False) 
 
     def __init__(self, nome, email, senha, tipo_id, empresa_id=None):
         self.nome = nome

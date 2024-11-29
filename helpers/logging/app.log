@@ -1,0 +1,10 @@
+2024-11-29 13:48:32,847 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-29 13:48:32,848 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-29 13:48:32,849 - INFO -  * Restarting with stat
+2024-11-29 13:48:33,504 - WARNING -  * Debugger is active!
+2024-11-29 13:48:33,620 - INFO -  * Debugger PIN: 112-371-229
+2024-11-29 13:49:31,099 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/app.py', reloading
+2024-11-29 13:49:31,228 - INFO -  * Restarting with stat
+2024-11-29 13:49:31,842 - WARNING -  * Debugger is active!
+2024-11-29 13:49:31,843 - INFO -  * Debugger PIN: 112-371-229

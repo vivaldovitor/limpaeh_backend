@@ -10,20 +10,18 @@ atividadesLimpezaFields = {
     'usuario_id': fields.Integer
 }
 
-class AtividadesLimpeza(db.Model):
-    __tablename__ = 'atividades_limpeza'
+class AtividadeLimpeza(db.Model):
+    __tablename__ = 'atividades_limpeza' 
 
     id = db.Column(db.Integer, primary_key=True)
     data_horario_inicio = db.Column(db.DateTime, nullable=False)
     data_horario_fim = db.Column(db.DateTime, nullable=True)
-    status = db.Column(db.String(50), nullable=False, default="pendente")  
 
     ambiente_id = db.Column(db.Integer, db.ForeignKey('ambientes.id'), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
-    def __init__(self, data_horario_inicio, ambiente_id, usuario_id, status="pendente", data_horario_fim=None):
+    def __init__(self, data_horario_inicio, ambiente_id, usuario_id, data_horario_fim=None):
         self.data_horario_inicio = data_horario_inicio
         self.data_horario_fim = data_horario_fim
         self.ambiente_id = ambiente_id
         self.usuario_id = usuario_id
-        self.status = status

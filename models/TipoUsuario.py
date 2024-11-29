@@ -7,8 +7,8 @@ tipoUsuarioFields = {
 }
 
 class TipoUsuario(db.Model):
-    __tablename__ = "tipos_usuarios"
-
+    __tablename__ = "tipos_usuarios"  
+    
     id = db.Column(db.Integer, primary_key=True)
     descricao = db.Column(db.String(50), nullable=False, unique=True)
 
