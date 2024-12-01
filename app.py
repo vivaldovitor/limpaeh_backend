@@ -14,12 +14,5 @@ migrate.init_app(app, db)
 cors.init_app(app)
 api.init_app(app)
 
-def create_tables():
-    with app.app_context():
-        db.create_all()
-    print('Tabelas criadas')
-
-create_tables()
-
 if __name__ == '__main__':
     app.run(debug=True)

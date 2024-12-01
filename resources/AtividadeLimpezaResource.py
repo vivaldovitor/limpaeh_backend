@@ -1,5 +1,5 @@
 from flask_restful import Resource, marshal, reqparse
-from models.AtividadesLimpeza import AtividadeLimpeza, atividadesLimpezaFields
+from models.AtividadeLimpeza import AtividadeLimpeza, atividadesLimpezaFields
 from helpers.database import db
 from sqlalchemy.exc import IntegrityError
 from helpers.logging import get_logger

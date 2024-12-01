@@ -7,7 +7,7 @@ from resources.ContratoResource import ContratosResource
 from resources.EmpresaResource import EmpresasResource
 from resources.TipoUsuarioResource import TipoUsuarioResource
 from resources.AtividadeLimpezaResource import AtividadesLimpezaResource
-
+from resources.FuncionarioContratoResource import FuncionariosContratoResource
 
 api = Api()
 
@@ -31,3 +31,6 @@ api.add_resource(TipoUsuarioResource, '/tipos_usuarios')
 
 # AtividadesLimepezas
 api.add_resource(AtividadesLimpezaResource, '/atividades_limpeza')
+
+# FuncionariosContratosResource
+api.add_resource(FuncionariosContratoResource, '/funcionario_contrato')

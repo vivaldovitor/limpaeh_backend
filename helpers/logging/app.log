@@ -8,3 +8,166 @@
 2024-11-29 13:49:31,228 - INFO -  * Restarting with stat
 2024-11-29 13:49:31,842 - WARNING -  * Debugger is active!
 2024-11-29 13:49:31,843 - INFO -  * Debugger PIN: 112-371-229
+2024-11-30 14:46:09,350 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-30 14:46:09,350 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-30 14:46:09,350 - INFO -  * Restarting with stat
+2024-11-30 14:46:09,636 - WARNING -  * Debugger is active!
+2024-11-30 14:46:09,705 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:46:22,455 - INFO - 127.0.0.1 - - [30/Nov/2024 14:46:22] "GET / HTTP/1.1" 200 -
+2024-11-30 14:48:35,154 - INFO - 127.0.0.1 - - [30/Nov/2024 14:48:35] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -
+2024-11-30 14:48:49,640 - INFO - 127.0.0.1 - - [30/Nov/2024 14:48:49] "[35m[1mGET /ambientes HTTP/1.1[0m" 500 -
+2024-11-30 14:49:08,344 - INFO - 127.0.0.1 - - [30/Nov/2024 14:49:08] "[35m[1mGET /empresas HTTP/1.1[0m" 500 -
+2024-11-30 14:49:35,360 - INFO - 127.0.0.1 - - [30/Nov/2024 14:49:35] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -
+2024-11-30 14:49:44,639 - INFO - 127.0.0.1 - - [30/Nov/2024 14:49:44] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -
+2024-11-30 14:49:58,651 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-30 14:49:58,651 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-30 14:49:58,651 - INFO -  * Restarting with stat
+2024-11-30 14:49:58,925 - WARNING -  * Debugger is active!
+2024-11-30 14:49:58,925 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:50:01,678 - INFO - 127.0.0.1 - - [30/Nov/2024 14:50:01] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -
+2024-11-30 14:51:14,348 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Contrato.py', reloading
+2024-11-30 14:51:14,432 - INFO -  * Restarting with stat
+2024-11-30 14:51:14,738 - WARNING -  * Debugger is active!
+2024-11-30 14:51:14,739 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:51:23,808 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Ambiente.py', reloading
+2024-11-30 14:51:23,876 - INFO -  * Restarting with stat
+2024-11-30 14:51:24,195 - WARNING -  * Debugger is active!
+2024-11-30 14:51:24,195 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:51:42,307 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Empresa.py', reloading
+2024-11-30 14:51:42,372 - INFO -  * Restarting with stat
+2024-11-30 14:51:42,654 - WARNING -  * Debugger is active!
+2024-11-30 14:51:42,654 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:51:59,774 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/FuncionarioContrato.py', reloading
+2024-11-30 14:51:59,849 - INFO -  * Restarting with stat
+2024-11-30 14:52:00,136 - WARNING -  * Debugger is active!
+2024-11-30 14:52:00,137 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:52:02,154 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/FuncionarioContrato.py', reloading
+2024-11-30 14:52:02,228 - INFO -  * Restarting with stat
+2024-11-30 14:52:02,509 - WARNING -  * Debugger is active!
+2024-11-30 14:52:02,510 - INFO -  * Debugger PIN: 647-542-479
+2024-11-30 14:52:22,641 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Usuario.py', reloading
+2024-11-30 14:52:22,728 - INFO -  * Restarting with stat
+2024-11-30 14:52:23,010 - WARNING -  * Debugger is active!
+2024-11-30 14:52:23,010 - INFO -  * Debugger PIN: 647-542-479
+2024-12-01 12:21:23,937 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 12:21:23,938 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 12:21:23,939 - INFO -  * Restarting with stat
+2024-12-01 12:21:24,560 - WARNING -  * Debugger is active!
+2024-12-01 12:21:24,685 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:21:34,208 - INFO - 127.0.0.1 - - [01/Dec/2024 12:21:34] "GET / HTTP/1.1" 200 -
+2024-12-01 12:21:43,246 - INFO - 127.0.0.1 - - [01/Dec/2024 12:21:43] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -
+2024-12-01 12:24:25,124 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Contrato.py', reloading
+2024-12-01 12:24:25,297 - INFO -  * Restarting with stat
+2024-12-01 12:24:25,901 - WARNING -  * Debugger is active!
+2024-12-01 12:24:25,902 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:25:19,375 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Ambiente.py', reloading
+2024-12-01 12:25:19,533 - INFO -  * Restarting with stat
+2024-12-01 12:25:20,139 - WARNING -  * Debugger is active!
+2024-12-01 12:25:20,140 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:26:36,814 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadesLimpeza.py', reloading
+2024-12-01 12:26:36,963 - INFO -  * Restarting with stat
+2024-12-01 12:26:37,472 - WARNING -  * Debugger is active!
+2024-12-01 12:26:37,473 - INFO -  * Debugger PIN: 403-064-579
+2024-12-01 12:26:41,516 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadesLimpeza.py', reloading
+2024-12-01 12:26:41,669 - INFO -  * Restarting with stat
+2024-12-01 12:26:42,247 - WARNING -  * Debugger is active!
+2024-12-01 12:26:42,247 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:26:52,342 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/resources/AtividadeLimpezaResource.py', reloading
+2024-12-01 12:26:52,618 - INFO -  * Restarting with stat
+2024-12-01 12:26:53,481 - WARNING -  * Debugger is active!
+2024-12-01 12:26:53,482 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:27:13,667 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/Ambiente.py', reloading
+2024-12-01 12:27:13,810 - INFO -  * Restarting with stat
+2024-12-01 12:27:14,379 - WARNING -  * Debugger is active!
+2024-12-01 12:27:14,380 - INFO -  * Debugger PIN: 403-064-579
+2024-12-01 12:30:47,114 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 12:30:47,114 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 12:30:47,115 - INFO -  * Restarting with stat
+2024-12-01 12:30:47,697 - WARNING -  * Debugger is active!
+2024-12-01 12:30:47,698 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:30:55,373 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 12:30:55,373 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 12:30:55,374 - INFO -  * Restarting with stat
+2024-12-01 12:30:55,977 - WARNING -  * Debugger is active!
+2024-12-01 12:30:55,978 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:31:02,161 - INFO - 127.0.0.1 - - [01/Dec/2024 12:31:02] "[35m[1mGET /usuarios HTTP/1.1[0m" 500 -
+2024-12-01 12:37:54,316 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/app.py', reloading
+2024-12-01 12:37:54,511 - INFO -  * Restarting with stat
+2024-12-01 12:37:55,271 - WARNING -  * Debugger is active!
+2024-12-01 12:37:55,272 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:38:00,577 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 12:38:00,577 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 12:38:00,579 - INFO -  * Restarting with stat
+2024-12-01 12:38:01,225 - WARNING -  * Debugger is active!
+2024-12-01 12:38:01,226 - INFO -  * Debugger PIN: 478-478-577
+2024-12-01 12:40:24,855 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 12:40:24,855 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 12:40:24,856 - INFO -  * Restarting with stat
+2024-12-01 12:40:25,443 - WARNING -  * Debugger is active!
+2024-12-01 12:40:25,443 - INFO -  * Debugger PIN: 831-615-204
+2024-12-01 12:41:27,961 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/app.py', reloading
+2024-12-01 12:41:28,115 - INFO -  * Restarting with stat
+2024-12-01 12:41:28,929 - WARNING -  * Debugger is active!
+2024-12-01 12:41:28,930 - INFO -  * Debugger PIN: 831-615-204
+2024-12-01 12:59:31,981 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 12:59:31,982 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 12:59:31,983 - INFO -  * Restarting with stat
+2024-12-01 12:59:32,562 - WARNING -  * Debugger is active!
+2024-12-01 12:59:32,562 - INFO -  * Debugger PIN: 831-615-204
+2024-12-01 13:01:58,078 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-12-01 13:01:58,078 - INFO - [33mPress CTRL+C to quit[0m
+2024-12-01 13:01:58,079 - INFO -  * Restarting with stat
+2024-12-01 13:01:58,655 - WARNING -  * Debugger is active!
+2024-12-01 13:01:58,656 - INFO -  * Debugger PIN: 831-615-204
+2024-12-01 13:02:07,550 - INFO - 127.0.0.1 - - [01/Dec/2024 13:02:07] "GET / HTTP/1.1" 200 -
+2024-12-01 13:02:12,157 - INFO - Consulta de usuários realizada com sucesso!
+2024-12-01 13:02:12,159 - INFO - 127.0.0.1 - - [01/Dec/2024 13:02:12] "GET /usuarios HTTP/1.1" 200 -
+2024-12-01 13:02:28,468 - INFO - Consulta de contratos realizada com sucesso!
+2024-12-01 13:02:28,471 - INFO - 127.0.0.1 - - [01/Dec/2024 13:02:28] "GET /contratos HTTP/1.1" 200 -
+2024-12-01 13:02:35,037 - INFO - Consulta de empresas realizada com sucesso!
+2024-12-01 13:02:35,038 - INFO - 127.0.0.1 - - [01/Dec/2024 13:02:35] "GET /empresas HTTP/1.1" 200 -
+2024-12-01 13:48:22,206 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadeLimpeza.py', reloading
+2024-12-01 13:48:22,406 - INFO -  * Restarting with stat
+2024-12-01 13:48:22,961 - WARNING -  * Debugger is active!
+2024-12-01 13:48:22,961 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:28,019 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/StatusLimpeza.py', reloading
+2024-12-01 13:48:28,157 - INFO -  * Restarting with stat
+2024-12-01 13:48:28,677 - WARNING -  * Debugger is active!
+2024-12-01 13:48:28,677 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:30,705 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/StatusLimpeza.py', reloading
+2024-12-01 13:48:30,851 - INFO -  * Restarting with stat
+2024-12-01 13:48:31,389 - WARNING -  * Debugger is active!
+2024-12-01 13:48:31,389 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:33,427 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/StatusLimpeza.py', reloading
+2024-12-01 13:48:33,563 - INFO -  * Restarting with stat
+2024-12-01 13:48:34,126 - WARNING -  * Debugger is active!
+2024-12-01 13:48:34,127 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:38,184 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadeLimpeza.py', reloading
+2024-12-01 13:48:38,331 - INFO -  * Restarting with stat
+2024-12-01 13:48:38,844 - WARNING -  * Debugger is active!
+2024-12-01 13:48:38,845 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:42,896 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadeLimpeza.py', reloading
+2024-12-01 13:48:43,041 - INFO -  * Restarting with stat
+2024-12-01 13:48:43,638 - WARNING -  * Debugger is active!
+2024-12-01 13:48:43,639 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:44,659 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadeLimpeza.py', reloading
+2024-12-01 13:48:44,820 - INFO -  * Restarting with stat
+2024-12-01 13:48:45,340 - WARNING -  * Debugger is active!
+2024-12-01 13:48:45,340 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:47,387 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadeLimpeza.py', reloading
+2024-12-01 13:48:47,563 - INFO -  * Restarting with stat
+2024-12-01 13:48:48,122 - WARNING -  * Debugger is active!
+2024-12-01 13:48:48,123 - INFO -  * Debugger PIN: 172-801-981
+2024-12-01 13:48:51,162 - INFO -  * Detected change in '/home/vivaldo/Documentos/estudos/pisi/limpaeh/models/AtividadeLimpeza.py', reloading
+2024-12-01 13:48:51,337 - INFO -  * Restarting with stat
+2024-12-01 13:48:51,952 - WARNING -  * Debugger is active!
+2024-12-01 13:48:51,953 - INFO -  * Debugger PIN: 831-615-204

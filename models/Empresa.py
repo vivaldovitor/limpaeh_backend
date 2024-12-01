@@ -18,7 +18,7 @@ class Empresa(db.Model):
     contato = db.Column(db.String(255), nullable=True)
     endereco = db.Column(db.String(255), nullable=True)
 
-    usuarios = db.relationship('Usuario', backref='empresa', lazy=True)
+    usuarios = db.relationship('Usuario', backref='empresas', lazy=True)
 
     def __init__(self, nome, cnpj, contato=None, endereco=None):
         self.nome = nome

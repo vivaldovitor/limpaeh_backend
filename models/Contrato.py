@@ -21,7 +21,7 @@ class Contrato(db.Model):
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=False)  
     empresa = db.relationship('Empresa', backref=db.backref('contratos', lazy=True))
 
-    usuarios = db.relationship('Usuario', secondary='funcionario_contrato', backref=db.backref('contratos', lazy=True), cascade="all, delete-orphan")  
+    usuarios = db.relationship('Usuario', secondary='funcionarios_contrato', backref=db.backref('contratos', lazy=True))  
 
     def __init__(self, vigencia_inicio, vigencia_fim, numero_funcionarios, custo, empresa_id):
         self.vigencia_inicio = vigencia_inicio
