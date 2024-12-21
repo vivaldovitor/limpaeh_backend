@@ -1,7 +1,7 @@
 from flask_restful import fields
 from helpers.database import db
 
-ambientesFields = {
+ambienteFields = {
     'id': fields.Integer,
     'nome': fields.String,
     'localizacao': fields.String

@@ -5,7 +5,7 @@ from resources.UsuarioResource import UsuariosResource
 from resources.AmbienteResource import AmbientesResource
 from resources.ContratoResource import ContratosResource
 from resources.EmpresaResource import EmpresasResource
-from resources.TipoUsuarioResource import TipoUsuarioResource
+from resources.TipoUsuarioResource import TipoUsuariosResource
 from resources.AtividadeLimpezaResource import AtividadesLimpezaResource
 from resources.FuncionarioContratoResource import FuncionariosContratoResource
 
@@ -27,7 +27,7 @@ api.add_resource(ContratosResource, '/contratos')
 api.add_resource(EmpresasResource, '/empresas')
 
 # TiposUsuarios
-api.add_resource(TipoUsuarioResource, '/tipos_usuarios')
+api.add_resource(TipoUsuariosResource, '/tipos_usuarios')
 
 # AtividadesLimepezas
 api.add_resource(AtividadesLimpezaResource, '/atividades_limpeza')

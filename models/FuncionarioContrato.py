@@ -1,7 +1,7 @@
 from helpers.database import db
 from flask_restful import fields
 
-funcionario_contrato_fields = {
+funcionarioContratoFields = {
     'usuario_id': fields.Integer,
     'contrato_id': fields.Integer
 }

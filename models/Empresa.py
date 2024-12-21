@@ -1,7 +1,7 @@
 from flask_restful import fields
 from helpers.database import db
 
-empresasFields = {
+empresaFields = {
     'id': fields.Integer,
     'nome': fields.String,
     'cnpj': fields.String,
