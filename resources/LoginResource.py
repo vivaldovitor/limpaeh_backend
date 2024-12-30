@@ -1,8 +1,9 @@
 from flask_restful import Resource, reqparse
-from models.Usuario import Usuario
+from models.Funcionario import Funcionario
 from helpers.logging import get_logger
 from helpers.database import db
 from werkzeug.security import check_password_hash
+from flask_jwt_extended import create_access_token
 
 logger = get_logger(__name__)
 
@@ -18,17 +19,26 @@ class LoginResource(Resource):
         senha = args['senha']
 
         try:
-            usuario = Usuario.query.filter_by(email=email).first()
-            if not usuario:
+            # Busca o usuário pelo email
+            funcionario = Funcionario.query.filter_by(email=email).first()
+            if not funcionario:
                 logger.warning(f"Tentativa de login falhou: usuário com email {email} não encontrado.")
                 return {"message": "Credenciais inválidas."}, 401
 
-            if not check_password_hash(usuario.senha, senha):
-                logger.warning(f"Tentativa de login falhou: senha incorreta para o usuário {email}.")
+            # Verifica a senha
+            if not check_password_hash(funcionario.senha, senha):
+                logger.warning(f"Tentativa de login falhou: senha incorreta para o funcionário {email}.")
                 return {"message": "Credenciais inválidas."}, 401
 
-            logger.info(f"Login bem-sucedido para o usuário {email}.")
-            return {"message": "Login realizado com sucesso.", "usuario_id": usuario.id}, 200
+            # Gera o token JWT
+            access_token = create_access_token(identity={"id": funcionario.id, "email": funcionario.email})
+
+            logger.info(f"Login bem-sucedido para o funcionário {email}.")
+            return {
+                "message": "Login realizado com sucesso.",
+                "token": access_token,
+                "usuario_id": funcionario.id
+            }, 200
 
         except Exception as e:
             logger.error(f"Erro ao tentar realizar login: {str(e)}")

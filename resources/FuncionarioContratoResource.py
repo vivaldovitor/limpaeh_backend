@@ -9,7 +9,7 @@ logger = get_logger(__name__)
 class FuncionariosContratoResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('usuario_id', type=int, required=True, help='Problema no usuario_id')
+        self.parser.add_argument('funcionario_id', type=int, required=True, help='Problema no funcionario_id')
         self.parser.add_argument('contrato_id', type=int, required=True, help='Problema no contrato_id')  
 
     def get(self):
@@ -24,7 +24,7 @@ class FuncionariosContratoResource(Resource):
     def post(self):
         args = self.parser.parse_args()
         funcionario_contrato = FuncionarioContrato(
-            usuario_id=args["usuario_id"],
+            funcionario_id=args["funcionario_id"],
             contrato_id=args["contrato_id"]  
         )
 
@@ -45,7 +45,7 @@ class FuncionariosContratoResource(Resource):
 class FuncionarioContratoResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('usuario_id', type=int, required=False, help='Problema no usuario_id')
+        self.parser.add_argument('funcionario_id', type=int, required=False, help='Problema no funcionario_id')
         self.parser.add_argument('contrato_id', type=int, required=False, help='Problema no contrato_id')
 
     def get(self, id):
@@ -68,8 +68,8 @@ class FuncionarioContratoResource(Resource):
             return {"message": "FuncionárioContrato não encontrado."}, 404
 
         try:
-            if args.get("usuario_id"):
-                funcionario_contrato.usuario_id = args["usuario_id"]
+            if args.get("funcionario_id"):
+                funcionario_contrato.funcionario_id = args["funcionario_id"]
             if args.get("contrato_id"):
                 funcionario_contrato.contrato_id = args["contrato_id"]
             

@@ -13,7 +13,7 @@ class AtividadesLimpezaResource(Resource):
         self.parser.add_argument('data_horario_fim', type=str, required=False, help="Data e horário de fim são opcionais.")
         self.parser.add_argument('status', type=str, required=False, help="Status da atividade de limpeza.")
         self.parser.add_argument('ambiente_id', type=int, required=True, help="ID do ambiente é obrigatório.")
-        self.parser.add_argument('usuario_id', type=int, required=True, help="ID do usuário é obrigatório.")
+        self.parser.add_argument('funcionario_id', type=int, required=True, help="ID do funcionário é obrigatório.")
 
     def get(self):
         try:
@@ -31,7 +31,7 @@ class AtividadesLimpezaResource(Resource):
             data_horario_fim=args.get('data_horario_fim'),
             status=args.get('status', 'PENDENTE'),
             ambiente_id=args['ambiente_id'],
-            usuario_id=args['usuario_id']
+            funcionario_id=args['funcionario_id']
         )
 
         try:
@@ -56,7 +56,7 @@ class AtividadeLimpezaResource(Resource):
         self.parser.add_argument('data_horario_fim', type=str, required=False, help="Data e horário de fim é inválido.")
         self.parser.add_argument('status', type=str, required=False, help="Status é inválido.")
         self.parser.add_argument('ambiente_id', type=int, required=False, help="ID do ambiente é inválido.")
-        self.parser.add_argument('usuario_id', type=int, required=False, help="ID do usuário é inválido.")
+        self.parser.add_argument('funcionario_id', type=int, required=False, help="ID do funcionário é inválido.")
 
     def get(self, id):
         try:
@@ -85,8 +85,8 @@ class AtividadeLimpezaResource(Resource):
                 atividade.status = args["status"]
             if args.get("ambiente_id"):
                 atividade.ambiente_id = args["ambiente_id"]
-            if args.get("usuario_id"):
-                atividade.usuario_id = args["usuario_id"]
+            if args.get("funcionario_id"):
+                atividade.usuario_id = args["funcionario_id"]
 
             db.session.commit()
             logger.info(f"Atividade de limpeza {id} atualizada com sucesso!")

@@ -10,6 +10,7 @@ class EmpresasResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('nome', type=str, required=True, help="O nome da empresa é obrigatório.")
+        self.parser.add_argument('nome_fantasia', type=str, required=True, help="O nome fantasia da empresa é obrigatório.")
         self.parser.add_argument('cnpj', type=str, required=True, help="O CNPJ da empresa é obrigatório.")
         self.parser.add_argument('contato', type=str, required=False, help="O contato da empresa é inválido.")
         self.parser.add_argument('endereco', type=str, required=False, help="O endereço da empresa é inválido.")
@@ -27,6 +28,7 @@ class EmpresasResource(Resource):
         args = self.parser.parse_args()
         empresa = Empresa(
             nome=args["nome"],
+            nome_fantasia=args["nome_fantasia"],
             cnpj=args["cnpj"],
             contato=args.get("contato"),
             endereco=args.get("endereco")  
@@ -51,6 +53,7 @@ class EmpresaResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('nome', type=str, required=False, help="O nome da empresa é inválido.")
+        self.parser.add_argument('nome_fantasia', type=str, required=True, help="O nome fantasia da empresa é obrigatório.")
         self.parser.add_argument('cnpj', type=str, required=False, help="O CNPJ da empresa é inválido.")
         self.parser.add_argument('contato', type=str, required=False, help="O contato da empresa é inválido.")
         self.parser.add_argument('endereco', type=str, required=False, help="O endereço da empresa é inválido.")
@@ -77,6 +80,8 @@ class EmpresaResource(Resource):
         try:
             if args.get("nome"):
                 empresa.nome = args["nome"]
+            if args.get("nome_fantasia"):
+                empresa.nome_fantasia = args["nome_fantasia"]
             if args.get("cnpj"):
                 empresa.cnpj = args["cnpj"]
             if args.get("contato"):

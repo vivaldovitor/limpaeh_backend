@@ -4,7 +4,7 @@ from helpers.database import db
 ambienteFields = {
     'id': fields.Integer,
     'nome': fields.String,
-    'localizacao': fields.String
+    'descricao': fields.String
 }
 
 class Ambiente(db.Model):
@@ -12,10 +12,10 @@ class Ambiente(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
-    localizacao = db.Column(db.String(255), nullable=True)
+    descricao = db.Column(db.String(255), nullable=True)
 
-    limpezas = db.relationship('AtividadeLimpeza', backref='ambiente', lazy=True)
+    limpezas = db.relationship('AtividadeLimpeza', backref='ambientes', lazy=True)
 
-    def __init__(self, nome, localizacao=None):
+    def __init__(self, nome, descricao=None):
         self.nome = nome
-        self.localizacao = localizacao
+        self.descricao = descricao

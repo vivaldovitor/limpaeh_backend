@@ -1,6 +1,6 @@
 from flask_restful import fields
 from helpers.database import db
-from datetime import datetime
+from datetime import datetime, timezone
 
 relatorioFields = {
     'id': fields.Integer,
@@ -14,10 +14,10 @@ class Relatorio(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     descricao = db.Column(db.Text, nullable=False)
-    funcionario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
-    data_hora_criacao = db.Column(db.DateTime, default=datetime.utcnow)
+    funcionario_id = db.Column(db.Integer, db.ForeignKey('funcionarios.id'), nullable=False)
+    data_hora_criacao = db.Column(db.DateTime, default=datetime.now(timezone.utc))
 
-    funcionario = db.relationship("Usuario", backref=db.backref("relatorios", lazy=True))
+    funcionario = db.relationship("Funcionario", backref=db.backref("relatorios", lazy=True))
 
     def __init__(self, descricao, funcionario_id):
         self.descricao = descricao

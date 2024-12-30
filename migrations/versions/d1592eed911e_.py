@@ -1,8 +1,8 @@
-"""Criando as tabelas com migrates
+"""empty message
 
-Revision ID: 627275d799e6
-Revises: e5d89fe362fe
-Create Date: 2024-12-01 12:59:54.163601
+Revision ID: d1592eed911e
+Revises: 
+Create Date: 2024-12-30 15:29:20.405400
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '627275d799e6'
-down_revision = 'e5d89fe362fe'
+revision = 'd1592eed911e'
+down_revision = None
 branch_labels = None
 depends_on = None
 
@@ -21,19 +21,20 @@ def upgrade():
     op.create_table('ambientes',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nome', sa.String(length=100), nullable=False),
-    sa.Column('localizacao', sa.String(length=255), nullable=True),
+    sa.Column('descricao', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('empresas',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nome', sa.String(length=255), nullable=False),
+    sa.Column('nome_fantasia', sa.String(length=255), nullable=False),
     sa.Column('cnpj', sa.String(length=18), nullable=False),
     sa.Column('contato', sa.String(length=255), nullable=True),
     sa.Column('endereco', sa.String(length=255), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('cnpj')
     )
-    op.create_table('tipos_usuarios',
+    op.create_table('tipos_funcionarios',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('descricao', sa.String(length=50), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -49,7 +50,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['empresa_id'], ['empresas.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
-    op.create_table('usuarios',
+    op.create_table('funcionarios',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('nome', sa.String(length=100), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
@@ -57,7 +58,7 @@ def upgrade():
     sa.Column('tipo_id', sa.Integer(), nullable=False),
     sa.Column('empresa_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['empresa_id'], ['empresas.id'], ),
-    sa.ForeignKeyConstraint(['tipo_id'], ['tipos_usuarios.id'], ),
+    sa.ForeignKeyConstraint(['tipo_id'], ['tipos_funcionarios.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
@@ -67,28 +68,65 @@ def upgrade():
     sa.Column('data_horario_fim', sa.DateTime(), nullable=True),
     sa.Column('status', sa.Enum('PENDENTE', 'EM_ANDAMENTO', 'FINALIZADO', name='statuslimpeza'), nullable=False),
     sa.Column('ambiente_id', sa.Integer(), nullable=False),
-    sa.Column('usuario_id', sa.Integer(), nullable=False),
+    sa.Column('funcionario_id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['ambiente_id'], ['ambientes.id'], ),
-    sa.ForeignKeyConstraint(['usuario_id'], ['usuarios.id'], ),
+    sa.ForeignKeyConstraint(['funcionario_id'], ['funcionarios.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('funcionarios_contrato',
-    sa.Column('usuario_id', sa.Integer(), nullable=False),
+    sa.Column('funcionario_id', sa.Integer(), nullable=False),
     sa.Column('contrato_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['contrato_id'], ['contratos.id'], ),
-    sa.ForeignKeyConstraint(['usuario_id'], ['usuarios.id'], ),
-    sa.PrimaryKeyConstraint('usuario_id', 'contrato_id')
+    sa.ForeignKeyConstraint(['funcionario_id'], ['funcionarios.id'], ),
+    sa.PrimaryKeyConstraint('funcionario_id', 'contrato_id')
+    )
+    op.create_table('relatorios',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('descricao', sa.Text(), nullable=False),
+    sa.Column('funcionario_id', sa.Integer(), nullable=False),
+    sa.Column('data_hora_criacao', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['funcionario_id'], ['funcionarios.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('solicitacoes',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('descricao', sa.Text(), nullable=False),
+    sa.Column('status', sa.Enum('PENDENTE', 'EM_ANALISE', 'ENVIADO_SUPERVISOR', 'FINALIZADO', name='statussolicitacao'), nullable=False),
+    sa.Column('data_criacao', sa.DateTime(), nullable=False),
+    sa.Column('data_finalizacao', sa.DateTime(), nullable=True),
+    sa.Column('setor_admin_id', sa.Integer(), nullable=False),
+    sa.Column('supervisor_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['setor_admin_id'], ['funcionarios.id'], ),
+    sa.ForeignKeyConstraint(['supervisor_id'], ['funcionarios.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('historico_solicitacoes',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('solicitacao_id', sa.Integer(), nullable=False),
+    sa.Column('funcionario_origem_id', sa.Integer(), nullable=False),
+    sa.Column('funcionario_destino_id', sa.Integer(), nullable=True),
+    sa.Column('data_movimentacao', sa.DateTime(), nullable=False),
+    sa.Column('descricao_movimentacao', sa.Text(), nullable=True),
+    sa.ForeignKeyConstraint(['funcionario_destino_id'], ['funcionarios.id'], ),
+    sa.ForeignKeyConstraint(['funcionario_origem_id'], ['funcionarios.id'], ),
+    sa.ForeignKeyConstraint(['solicitacao_id'], ['solicitacoes.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
 
 def downgrade():
     # ### commands auto generated by Alembic - please adjust! ###
+    op.drop_table('historico_solicitacoes')
+    op.drop_table('solicitacoes')
+    op.drop_table('relatorios')
     op.drop_table('funcionarios_contrato')
     op.drop_table('atividades_limpeza')
-    op.drop_table('usuarios')
+    op.drop_table('funcionarios')
     op.drop_table('contratos')
-    op.drop_table('tipos_usuarios')
+    op.drop_table('tipos_funcionarios')
     op.drop_table('empresas')
     op.drop_table('ambientes')
     # ### end Alembic commands ###
