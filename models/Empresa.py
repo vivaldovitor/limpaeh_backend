@@ -22,8 +22,9 @@ class Empresa(db.Model):
 
     usuarios = db.relationship('Funcionario', backref='empresas', lazy=True)
 
-    def __init__(self, nome, cnpj, contato=None, endereco=None):
+    def __init__(self, nome, nome_fantasia, cnpj, contato=None, endereco=None):
         self.nome = nome
+        self.nome_fantasia = nome_fantasia
         self.cnpj = cnpj
         self.contato = contato
         self.endereco = endereco

@@ -31,13 +31,18 @@ class LoginResource(Resource):
                 return {"message": "Credenciais inválidas."}, 401
 
             # Gera o token JWT
-            access_token = create_access_token(identity={"id": funcionario.id, "email": funcionario.email})
+            access_token = create_access_token(identity={
+                "id": funcionario.id,
+                "email": funcionario.email,
+                "tipo_id": funcionario.tipo_id 
+            })
 
             logger.info(f"Login bem-sucedido para o funcionário {email}.")
             return {
                 "message": "Login realizado com sucesso.",
                 "token": access_token,
-                "usuario_id": funcionario.id
+                "usuario_id": funcionario.id,
+                "tipo_id": funcionario.tipo_id
             }, 200
 
         except Exception as e:

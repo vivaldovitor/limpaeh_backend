@@ -62,6 +62,7 @@ class AtividadeLimpezaResource(Resource):
         try:
             atividade = AtividadeLimpeza.query.get(id)
             if not atividade:
+                logger.info(f"Atividade de limpeza não encontrada")
                 return {"message": "Atividade de limpeza não encontrada."}, 404
 
             logger.info(f"Consulta da atividade de limpeza {id} realizada com sucesso!")

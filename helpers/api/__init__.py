@@ -27,11 +27,11 @@ api.add_resource(FuncionarioResource, '/funcionario/<int:id>')
 
 # Solicitações
 api.add_resource(SolicitacoesResource, '/solicitacoes')
-api.add_resource(SolicitacaoResource, '/solicitacao')
+api.add_resource(SolicitacaoResource, '/solicitacao/<int:id>')
 
 # históricos
 api.add_resource(HistoricoSolicitacoesResource, '/historicos')
-api.add_resource(HistoricoSolicitacaoResource, '/historico')
+api.add_resource(HistoricoSolicitacaoResource, '/historico/<int:id>')
 
 # Ambientes
 api.add_resource(AmbientesResource, '/ambientes')
@@ -49,9 +49,9 @@ api.add_resource(EmpresaResource, '/empresa/<int:id>')
 api.add_resource(TipoUsuariosResource, '/tipos_funcionarios')
 api.add_resource(TipoUsuarioResource, '/tipo_funcionario/<int:id>')
 
-# AtividadesLimepezas
+# AtividadesLimpezas
 api.add_resource(AtividadesLimpezaResource, '/atividades_limpeza')
-api.add_resource(AtividadeLimpezaResource, '/atividade_limpeza/<int:id>;')
+api.add_resource(AtividadeLimpezaResource, '/atividade_limpeza/<int:id>')
 
 # FuncionariosContratosResource
 api.add_resource(FuncionariosContratoResource, '/funcionarios_contratos')
