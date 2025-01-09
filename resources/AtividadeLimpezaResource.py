@@ -1,3 +1,5 @@
+from datetime import datetime
+from dateutil import parser
 from flask_restful import Resource, marshal, reqparse
 from models.AtividadeLimpeza import AtividadeLimpeza, atividadeLimpezaFields
 from helpers.database import db
@@ -9,29 +11,39 @@ logger = get_logger(__name__)
 class AtividadesLimpezaResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('data_horario_inicio', type=str, required=True, help="Data e horário de início são obrigatórios.")
+        self.parser.add_argument('data_horario_inicio', type=str, required=False, help="Data e horário de início são obrigatórios.")
         self.parser.add_argument('data_horario_fim', type=str, required=False, help="Data e horário de fim são opcionais.")
         self.parser.add_argument('status', type=str, required=False, help="Status da atividade de limpeza.")
+        self.parser.add_argument('descricao', type=str, required=True, help='Descrição é obrigatória.')
         self.parser.add_argument('ambiente_id', type=int, required=True, help="ID do ambiente é obrigatório.")
         self.parser.add_argument('funcionario_id', type=int, required=True, help="ID do funcionário é obrigatório.")
+        self.parser.add_argument('solicitacao_id', type=int, required=True, help="ID da solicitação é obrigatório")
 
     def get(self):
         try:
             atividades_limpeza = AtividadeLimpeza.query.all()
             logger.info("Consulta de atividades de limpeza realizada com sucesso!")
-            return {'Atividades': marshal(atividades_limpeza, atividadeLimpezaFields)}, 200
+            return {'atividades': marshal(atividades_limpeza, atividadeLimpezaFields)}, 200
         except Exception as e:
             logger.error(f"Ocorreu um erro: {str(e)}")
             return {"message": f"Ocorreu um erro: {str(e)}"}, 500
 
     def post(self):
         args = self.parser.parse_args()
+
+        data_horario_inicio = parser.parse(args['data_horario_inicio']).replace(tzinfo=None)
+
+        if data_horario_inicio > datetime.now():
+            return {"message": "A data de início não pode ser no futuro."}, 400
+
         atividade_limpeza = AtividadeLimpeza(
             data_horario_inicio=args['data_horario_inicio'],
             data_horario_fim=args.get('data_horario_fim'),
             status=args.get('status', 'PENDENTE'),
+            descricao=args['descricao'],
             ambiente_id=args['ambiente_id'],
-            funcionario_id=args['funcionario_id']
+            funcionario_id=args['funcionario_id'],
+            solicitacao_id=args["solicitacao_id"]
         )
 
         try:
@@ -48,13 +60,13 @@ class AtividadesLimpezaResource(Resource):
             logger.error(f"Erro ao criar atividade de limpeza: {str(e)}")
             return {"message": f"Ocorreu um erro: {str(e)}"}, 500
 
-
 class AtividadeLimpezaResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('data_horario_inicio', type=str, required=False, help="Data e horário de início é inválido.")
         self.parser.add_argument('data_horario_fim', type=str, required=False, help="Data e horário de fim é inválido.")
         self.parser.add_argument('status', type=str, required=False, help="Status é inválido.")
+        self.parser.add_argument('descricao', type=str, required=False, help='Descrição é obrigatório.')
         self.parser.add_argument('ambiente_id', type=int, required=False, help="ID do ambiente é inválido.")
         self.parser.add_argument('funcionario_id', type=int, required=False, help="ID do funcionário é inválido.")
 
@@ -84,10 +96,12 @@ class AtividadeLimpezaResource(Resource):
                 atividade.data_horario_fim = args["data_horario_fim"]
             if args.get("status"):
                 atividade.status = args["status"]
+            if args.get("descricao"):
+                atividade.descricao = args["descricao"]
             if args.get("ambiente_id"):
                 atividade.ambiente_id = args["ambiente_id"]
             if args.get("funcionario_id"):
-                atividade.usuario_id = args["funcionario_id"]
+                atividade.funcionario_id = args["funcionario_id"]
 
             db.session.commit()
             logger.info(f"Atividade de limpeza {id} atualizada com sucesso!")

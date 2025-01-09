@@ -11,7 +11,7 @@ class SolicitacoesResource(Resource):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('descricao', type=str, required=True, help="A descrição é obrigatória.")
         self.parser.add_argument('setor_admin_id', type=int, required=True, help="O ID do setor administrativo é obrigatório.")
-        self.parser.add_argument('supervisor_id', type=int, required=False, help="O ID do supervisor é opcional.")
+        self.parser.add_argument('supervisor_id', type=int, required=True, help="O ID do supervisor é opcional.")
 
     def get(self):
         try:
@@ -27,7 +27,7 @@ class SolicitacoesResource(Resource):
         solicitacao = Solicitacao(
             descricao=args["descricao"],
             setor_admin_id=args["setor_admin_id"],
-            supervisor_id=args.get("supervisor_id")
+            supervisor_id=args["supervisor_id"]
         )
 
         try:

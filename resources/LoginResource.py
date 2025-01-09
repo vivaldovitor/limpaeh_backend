@@ -18,33 +18,36 @@ class LoginResource(Resource):
         email = args['email']
         senha = args['senha']
 
+        logger.debug(f"Recebido login para o email: {email} e senha {senha}")
+
         try:
-            # Busca o usuário pelo email
             funcionario = Funcionario.query.filter_by(email=email).first()
             if not funcionario:
-                logger.warning(f"Tentativa de login falhou: usuário com email {email} não encontrado.")
+                logger.warning(f"Usuário com email {email} não encontrado no banco de dados.")
                 return {"message": "Credenciais inválidas."}, 401
 
-            # Verifica a senha
+            logger.debug(f"Usuário encontrado: {funcionario.email}")
+
             if not check_password_hash(funcionario.senha, senha):
-                logger.warning(f"Tentativa de login falhou: senha incorreta para o funcionário {email}.")
+                logger.info(f"funcionario.senha = {funcionario.senha} e senha {senha}")
+                logger.warning(f"Senha incorreta para o email: {email}")
                 return {"message": "Credenciais inválidas."}, 401
 
-            # Gera o token JWT
+            logger.debug("Senha validada com sucesso.")
+
             access_token = create_access_token(identity={
                 "id": funcionario.id,
                 "email": funcionario.email,
-                "tipo_id": funcionario.tipo_id 
+                "tipo_id": funcionario.tipo_id
             })
 
-            logger.info(f"Login bem-sucedido para o funcionário {email}.")
+            logger.info(f"Login bem-sucedido para o email: {email}")
             return {
                 "message": "Login realizado com sucesso.",
                 "token": access_token,
-                "usuario_id": funcionario.id,
-                "tipo_id": funcionario.tipo_id
+                "funcionario_id": funcionario.id,
             }, 200
 
         except Exception as e:
-            logger.error(f"Erro ao tentar realizar login: {str(e)}")
+            logger.error(f"Erro no login: {str(e)}", exc_info=True)
             return {"message": "Erro interno no servidor."}, 500

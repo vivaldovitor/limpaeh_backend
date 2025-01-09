@@ -7,11 +7,9 @@ from resources.HistoricoSolicitacaoResource import HistoricoSolicitacoesResource
 from resources.RelatoriosResource import RelatoriosResource, RelatorioResource
 from resources.FuncionarioResource import FuncionariosResource, FuncionarioResource
 from resources.AmbienteResource import AmbientesResource, AmbienteResource
-from resources.ContratoResource import ContratosResource, ContratoResource
 from resources.EmpresaResource import EmpresasResource, EmpresaResource
 from resources.TipoFuncionarioResource import TipoUsuariosResource, TipoUsuarioResource
 from resources.AtividadeLimpezaResource import AtividadesLimpezaResource, AtividadeLimpezaResource
-from resources.FuncionarioContratoResource import FuncionariosContratoResource, FuncionarioContratoResource
 
 api = Api()
 
@@ -37,10 +35,6 @@ api.add_resource(HistoricoSolicitacaoResource, '/historico/<int:id>')
 api.add_resource(AmbientesResource, '/ambientes')
 api.add_resource(AmbienteResource, '/ambiente/<int:id>')
 
-# Contratos
-api.add_resource(ContratosResource, '/contratos')
-api.add_resource(ContratoResource, '/contrato/<int:id>')
-
 # Empresas
 api.add_resource(EmpresasResource, '/empresas')
 api.add_resource(EmpresaResource, '/empresa/<int:id>')
@@ -52,10 +46,6 @@ api.add_resource(TipoUsuarioResource, '/tipo_funcionario/<int:id>')
 # AtividadesLimpezas
 api.add_resource(AtividadesLimpezaResource, '/atividades_limpeza')
 api.add_resource(AtividadeLimpezaResource, '/atividade_limpeza/<int:id>')
-
-# FuncionariosContratosResource
-api.add_resource(FuncionariosContratoResource, '/funcionarios_contratos')
-api.add_resource(FuncionarioContratoResource, '/funcionario_contrato/<int:id>')
 
 # Relatórios
 api.add_resource(RelatoriosResource, '/relatorios')

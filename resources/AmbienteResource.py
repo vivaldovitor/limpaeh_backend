@@ -15,10 +15,7 @@ class AmbientesResource(Resource):
 
     def get(self):
         try:
-            page = int(self.parser.parse_args().get('page', 1))
-            per_page = int(self.parser.parse_args().get('per_page', 10))
-
-            ambientes = Ambiente.query.paginate(page=page, per_page=per_page, error_out=False).items
+            ambientes = Ambiente.query.all()
             logger.info("Consulta de ambientes realizada com sucesso!")
             return {'ambientes': marshal(ambientes, ambienteFields)}, 200
         except Exception as e:

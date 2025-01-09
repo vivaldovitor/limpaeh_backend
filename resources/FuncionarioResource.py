@@ -1,6 +1,7 @@
 from flask_restful import Resource, marshal, reqparse
 from models.Funcionario import Funcionario, funcionarioFields
 from helpers.database import db
+from werkzeug.security import generate_password_hash
 from sqlalchemy.exc import IntegrityError
 from helpers.logging import get_logger
 
@@ -52,12 +53,12 @@ class FuncionariosResource(Resource):
 class FuncionarioResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('nome', type=str, required=True, help="O nome do funcionário é obrigatório.")
-        self.parser.add_argument('email', type=str, required=True, help="O email do funcionário é obrigatório.")
-        self.parser.add_argument('senha', type=str, required=True, help="A senha do funcionário é obrigatória.")
-        self.parser.add_argument('tipo_id', type=int, required=True, help="O tipo de funcionário é obrigatório.")
+        self.parser.add_argument('nome', type=str, required=False, help="O nome do funcionário é obrigatório.")
+        self.parser.add_argument('email', type=str, required=False, help="O email do funcionário é obrigatório.")
+        self.parser.add_argument('senha', type=str, required=False, help="A senha do funcionário é obrigatória.")
+        self.parser.add_argument('tipo_id', type=int, required=False, help="O tipo de funcionário é obrigatório.")
         self.parser.add_argument('empresa_id', type=int, required=False, help="O ID da empresa é opcional.")
-
+   
     def get(self, id):
         try:
             funcionario = Funcionario.query.get(id)
@@ -85,7 +86,7 @@ class FuncionarioResource(Resource):
             if args.get("email"):    
                 funcionario.email = args["email"]
             if args.get("senha"):   
-                funcionario.senha = args["senha"]
+                funcionario.senha = generate_password_hash(args["senha"])
             if args.get("tipo_id"):
                 funcionario.tipo_id = args["tipo_id"]
             if args.get("empresa_id"):

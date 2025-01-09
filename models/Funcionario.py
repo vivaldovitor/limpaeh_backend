@@ -7,7 +7,8 @@ funcionarioFields = {
     'id': fields.Integer,
     'nome': fields.String,
     'email': fields.String,
-    'tipo': fields.Nested(tipoFuncionariosFields)
+    'tipo': fields.Nested(tipoFuncionariosFields),
+    'empresa_id': fields.Integer
 }
 
 class Funcionario(db.Model):

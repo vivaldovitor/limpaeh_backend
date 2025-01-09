@@ -23,11 +23,14 @@ class Solicitacao(db.Model):
     data_finalizacao = db.Column(db.DateTime, nullable=True)
 
     setor_admin_id = db.Column(db.Integer, db.ForeignKey('funcionarios.id'), nullable=False)  
-    supervisor_id = db.Column(db.Integer, db.ForeignKey('funcionarios.id'), nullable=True)  
-
+    supervisor_id = db.Column(db.Integer, db.ForeignKey('funcionarios.id'), nullable=False)
+    
+    atividades = db.relationship('AtividadeLimpeza', backref='solicitacao', lazy=True)
+    
     setor_admin = db.relationship('Funcionario', foreign_keys=[setor_admin_id], backref='solicitacoes_criadas')
     supervisor = db.relationship('Funcionario', foreign_keys=[supervisor_id], backref='solicitacoes_supervisionadas')
 
-    def __init__(self, descricao, setor_admin_id):
+    def __init__(self, descricao, setor_admin_id, supervisor_id):
         self.descricao = descricao
         self.setor_admin_id = setor_admin_id
+        self.supervisor_id = supervisor_id
