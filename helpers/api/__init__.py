@@ -3,7 +3,6 @@ from flask_restful import Api
 from resources.LoginResource import LoginResource
 from resources.IndexResource import IndexResource
 from resources.SolicitacaoResource import SolicitacoesResource, SolicitacaoResource
-from resources.HistoricoSolicitacaoResource import HistoricoSolicitacoesResource, HistoricoSolicitacaoResource
 from resources.RelatoriosResource import RelatoriosResource, RelatorioResource
 from resources.FuncionarioResource import FuncionariosResource, FuncionarioResource
 from resources.AmbienteResource import AmbientesResource, AmbienteResource
@@ -26,10 +25,6 @@ api.add_resource(FuncionarioResource, '/funcionario/<int:id>')
 # Solicitações
 api.add_resource(SolicitacoesResource, '/solicitacoes')
 api.add_resource(SolicitacaoResource, '/solicitacao/<int:id>')
-
-# históricos
-api.add_resource(HistoricoSolicitacoesResource, '/historicos')
-api.add_resource(HistoricoSolicitacaoResource, '/historico/<int:id>')
 
 # Ambientes
 api.add_resource(AmbientesResource, '/ambientes')
