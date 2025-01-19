@@ -28,9 +28,6 @@ class AtividadeLimpeza(db.Model):
     funcionario_id = db.Column(db.Integer, db.ForeignKey('funcionarios.id'), nullable=False)
     solicitacao_id = db.Column(db.Integer, db.ForeignKey('solicitacoes.id'))
 
-    created_at = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
-    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp(), nullable=False)
-
     def __init__(self, data_horario_inicio, descricao, ambiente_id, funcionario_id, solicitacao_id=None, data_horario_fim=None, status=StatusLimpeza.PENDENTE):
         if isinstance(data_horario_inicio, str):
             data_horario_inicio = parser.parse(data_horario_inicio)
