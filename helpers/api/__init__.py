@@ -45,3 +45,6 @@ api.add_resource(AtividadeLimpezaResource, '/atividade_limpeza/<int:id>')
 # Relatórios
 api.add_resource(RelatoriosResource, '/relatorios')
 api.add_resource(RelatorioResource, '/relatorio/<int:id>')
+
+# Finalizar atividade
+# api.add_resource(FinalizarAtividadeResource, '/finalizar_atividade/<int:id>')

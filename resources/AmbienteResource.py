@@ -25,7 +25,6 @@ class AmbientesResource(Resource):
     def post(self):
         args = self.parser.parse_args()
 
-        # Validação de nome duplicado
         if Ambiente.query.filter_by(nome=args['nome']).first():
             return {"message": "Ambiente com este nome já existe."}, 400
 
@@ -74,8 +73,6 @@ class AmbienteResource(Resource):
 
         try:
             if args.get('nome') and args['nome'].strip():
-                if Ambiente.query.filter_by(nome=args['nome']).first():
-                    return {"message": "Ambiente com este nome já existe."}, 400
                 ambiente.nome = args['nome']
 
             if args.get('descricao'):

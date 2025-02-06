@@ -3,14 +3,19 @@ from models.Relatorio import Relatorio, relatorioFields
 from helpers.database import db
 from sqlalchemy.exc import IntegrityError
 from helpers.logging import get_logger
+from time import localtime, strftime
 
 logger = get_logger(__name__)
 
 class RelatoriosResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('descricao', type=str, required=True, help="A descrição do relatório é obrigatória.")
+        self.parser.add_argument('descricao', type=str, required=False, help="A descrição do relatório é obrigatória.")
         self.parser.add_argument('funcionario_id', type=int, required=True, help="O ID do funcionário é obrigatório.")
+        self.parser.add_argument('atividade_id', type=int, required=True, help="O ID da atividade é obrigatório.")
+        self.parser.add_argument('horario_inicio', type=str, required=False)
+        self.parser.add_argument('horario_fim', type=str, required=False)
+        self.parser.add_argument('observacao', type=str, required=False)
 
     def get(self):
         try:
@@ -23,9 +28,14 @@ class RelatoriosResource(Resource):
 
     def post(self):
         args = self.parser.parse_args()
+
         relatorio = Relatorio(
             descricao=args['descricao'],
-            funcionario_id=args['funcionario_id']
+            funcionario_id=args['funcionario_id'],
+            atividade_id=args['atividade_id'],
+            horario_inicio=args['horario_inicio'] or strftime("%H:%M:%S", localtime()),
+            horario_fim=args['horario_fim'] or strftime("%H:%M:%S", localtime()),
+            observacao=args.get('observacao')
         )
 
         try:
@@ -46,8 +56,12 @@ class RelatoriosResource(Resource):
 class RelatorioResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('descricao', type=str, required=False, help="A descrição do relatório é obrigatória.")
-        self.parser.add_argument('funcionario_id', type=int, required=False, help="O ID do funcionário é obrigatório.")
+        self.parser.add_argument('descricao', type=str, required=False)
+        self.parser.add_argument('funcionario_id', type=int, required=False)
+        self.parser.add_argument('atividade_id', type=int, required=False)
+        self.parser.add_argument('horario_inicio', type=str, required=False)
+        self.parser.add_argument('horario_fim', type=str, required=False)
+        self.parser.add_argument('observacao', type=str, required=False)
 
     def get(self, id):
         try:
@@ -73,6 +87,14 @@ class RelatorioResource(Resource):
                 relatorio.descricao = args["descricao"]
             if args.get("funcionario_id"):
                 relatorio.funcionario_id = args["funcionario_id"]
+            if args.get("atividade_id"):
+                relatorio.atividade_id = args["atividade_id"]
+            if args.get("horario_inicio"):
+                relatorio.horario_inicio = args["horario_inicio"]
+            if args.get("horario_fim"):
+                relatorio.horario_fim = args["horario_fim"]
+            if args.get("observacao"):
+                relatorio.observacao = args["observacao"]
 
             db.session.commit()
             logger.info(f"Relatório ID {id} atualizado com sucesso!")

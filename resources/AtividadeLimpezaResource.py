@@ -11,13 +11,10 @@ logger = get_logger(__name__)
 class AtividadesLimpezaResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
-        self.parser.add_argument('data_horario_inicio', type=str, required=False, help="Data e horário de início são obrigatórios.")
-        self.parser.add_argument('data_horario_fim', type=str, required=False, help="Data e horário de fim são opcionais.")
         self.parser.add_argument('status', type=str, required=False, help="Status da atividade de limpeza.")
         self.parser.add_argument('descricao', type=str, required=True, help='Descrição é obrigatória.')
         self.parser.add_argument('ambiente_id', type=int, required=True, help="ID do ambiente é obrigatório.")
         self.parser.add_argument('funcionario_id', type=int, required=True, help="ID do funcionário é obrigatório.")
-        self.parser.add_argument('solicitacao_id', type=int, required=True, help="ID da solicitação é obrigatório")
 
     def get(self):
         try:
@@ -31,19 +28,11 @@ class AtividadesLimpezaResource(Resource):
     def post(self):
         args = self.parser.parse_args()
 
-        data_horario_inicio = parser.parse(args['data_horario_inicio']).replace(tzinfo=None)
-
-        if data_horario_inicio > datetime.now():
-            return {"message": "A data de início não pode ser no futuro."}, 400
-
         atividade_limpeza = AtividadeLimpeza(
-            data_horario_inicio=args['data_horario_inicio'],
-            data_horario_fim=args.get('data_horario_fim'),
             status=args.get('status', 'PENDENTE'),
             descricao=args['descricao'],
             ambiente_id=args['ambiente_id'],
-            funcionario_id=args['funcionario_id'],
-            solicitacao_id=args["solicitacao_id"]
+            funcionario_id=args['funcionario_id']
         )
 
         try:

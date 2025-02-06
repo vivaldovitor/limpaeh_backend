@@ -10,7 +10,7 @@ class SolicitacoesResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('descricao', type=str, required=True, help="A descrição é obrigatória.")
-        self.parser.add_argument('setor_admin_id', type=int, required=True, help="O ID do setor administrativo é obrigatório.")
+        self.parser.add_argument('admin_id', type=int, required=True, help="O ID do administrador é obrigatório.")
         self.parser.add_argument('supervisor_id', type=int, required=True, help="O ID do supervisor é opcional.")
 
     def get(self):
@@ -26,7 +26,7 @@ class SolicitacoesResource(Resource):
         args = self.parser.parse_args()
         solicitacao = Solicitacao(
             descricao=args["descricao"],
-            setor_admin_id=args["setor_admin_id"],
+            admin_id=args["admin_id"],
             supervisor_id=args["supervisor_id"]
         )
 
@@ -48,7 +48,7 @@ class SolicitacaoResource(Resource):
     def __init__(self):
         self.parser = reqparse.RequestParser()
         self.parser.add_argument('descricao', type=str, required=False)
-        self.parser.add_argument('setor_admin_id', type=int, required=False)
+        self.parser.add_argument('admin_id', type=int, required=False)
         self.parser.add_argument('supervisor_id', type=int, required=False)
         self.parser.add_argument('status', type=str, required=False)
 
@@ -76,8 +76,8 @@ class SolicitacaoResource(Resource):
         try:
             if args.get("descricao"):
                 solicitacao.descricao = args["descricao"]
-            if args.get("setor_admin_id"):
-                solicitacao.setor_admin_id = args["setor_admin_id"]
+            if args.get("admin_id"):
+                solicitacao.admin_id = args["admin_id"]
             if args.get("supervisor_id"):
                 solicitacao.supervisor_id = args["supervisor_id"]
             if args.get("status"):
