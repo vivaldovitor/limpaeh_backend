@@ -1,13 +1,13 @@
 from flask_restful import fields
 from helpers.database import db
 from werkzeug.security import generate_password_hash
-from .TipoFuncionario import tipoFuncionariosFields
+from .TipoUsuario import tipoUsuariosFields
 
 funcionarioFields = {
     'id': fields.Integer,
     'nome': fields.String,
     'email': fields.String,
-    'tipo': fields.Nested(tipoFuncionariosFields),
+    'tipo': fields.Nested(tipoUsuariosFields),
     'empresa_id': fields.Integer
 }
 
@@ -18,10 +18,10 @@ class Funcionario(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     senha = db.Column(db.Text, nullable=False)
-    tipo_id = db.Column(db.Integer, db.ForeignKey('tipos_funcionarios.id'), nullable=False)  
+    tipo_id = db.Column(db.Integer, db.ForeignKey('tipos_usuarios.id'), nullable=False)  
     empresa_id = db.Column(db.Integer, db.ForeignKey('empresas.id'), nullable=False) 
     
-    tipo = db.relationship("TipoFuncionario", backref=db.backref("funcionarios", lazy=True))  
+    tipo = db.relationship("TipoUsuario", backref=db.backref("usuarios", lazy=True))  
 
     def __init__(self, nome, email, senha, tipo_id, empresa_id=None):
         self.nome = nome
