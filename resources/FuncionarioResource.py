@@ -1,3 +1,4 @@
+import re
 from flask_restful import Resource, marshal, reqparse
 from models.Funcionario import Funcionario, funcionarioFields
 from helpers.database import db
@@ -6,6 +7,7 @@ from sqlalchemy.exc import IntegrityError
 from helpers.logging import get_logger
 
 logger = get_logger(__name__)
+EMAIL_REGEX = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
 class FuncionariosResource(Resource):
     def __init__(self):
@@ -27,10 +29,15 @@ class FuncionariosResource(Resource):
         
     def post(self):
         args = self.parser.parse_args()
+
+        if not re.match(EMAIL_REGEX, args["email"]):
+            logger.warning("Tentativa de cadastro com e-mail inválido: %s", args["email"])
+            return {"message": "O e-mail fornecido é inválido."}, 400
+        
         funcionario = Funcionario(
             nome=args["nome"],
             email=args["email"],
-            senha=args["senha"],
+            senha=generate_password_hash(args["senha"]),
             tipo_id=args["tipo_id"],
             empresa_id=args["empresa_id"]
         )
@@ -48,7 +55,6 @@ class FuncionariosResource(Resource):
             db.session.rollback()
             logger.error(f"Ocorreu um erro: {str(e)}")
             return {"message": f"Ocorreu um erro: {str(e)}"}, 500
-
 
 class FuncionarioResource(Resource):
     def __init__(self):
@@ -83,7 +89,10 @@ class FuncionarioResource(Resource):
         try:
             if args.get("nome"):
                 funcionario.nome = args["nome"]
-            if args.get("email"):    
+            if args.get("email"):
+                if not re.match(EMAIL_REGEX, args["email"]):
+                    logger.warning("Tentativa de atualização com e-mail inválido: %s", args["email"])
+                    return {"message": "O e-mail fornecido é inválido."}, 400
                 funcionario.email = args["email"]
             if args.get("senha"):   
                 funcionario.senha = generate_password_hash(args["senha"])
